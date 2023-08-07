@@ -1,0 +1,32 @@
+section {
+    width: 50vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 20px;
+}
+
+.input-field {
+    margin: 10px
+}
+
+button {
+    margin-left: 10px;
+}
+
+.added-menu-items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    margin: 10px;
+}
+
+.editing-card {
+    border-bottom: 1px solid rgb(0, 0, 0);
+    margin-left: 10px;
+  }

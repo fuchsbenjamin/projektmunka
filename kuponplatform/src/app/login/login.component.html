@@ -1,0 +1,33 @@
+<section>
+    <h2 (click)="clickCloseLogin()" class="close">X</h2>
+    <h1>log in</h1>
+    
+    <mat-stepper linear #stepper>
+        <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Enter your emial</ng-template>
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="firstCtrl" required type="email" [(ngModel)]="email" name="email">
+            </mat-form-field>
+            <div>
+              <button mat-raised-button color="primary" matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+          <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmit()">
+            <ng-template matStepLabel>Enter yout password</ng-template>
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="secondCtrl" required type="password" [(ngModel)]="password" name="password">
+            </mat-form-field>
+            <div *ngIf="loginError == true" class="error">Oops! Something is wrong with your email or password</div>
+            <div class="buttons">
+              <button mat-raised-button matStepperPrevious color="primary" >Back</button>
+              <button mat-raised-button type="submit" color="accent">Log in</button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-stepper>
+</section>

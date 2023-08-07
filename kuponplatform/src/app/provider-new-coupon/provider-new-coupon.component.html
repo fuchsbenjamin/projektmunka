@@ -1,0 +1,52 @@
+
+<section id="add-new-coupon-continer">
+  <mat-icon class="close" (click)="clickCloseCoupon()">close</mat-icon>
+
+<form (onSubmit)="addCouponToFirestore()" id="add-new-coupon-form" [formGroup]="newCouponForm">
+    <mat-form-field class="example-form-field">
+        <mat-label>Coupon name</mat-label>
+        <input formControlName="name" matInput type="text" [(ngModel)]="coupon.name" name="couponName">
+        <button *ngIf="coupon.name != ''" matSuffix mat-icon-button aria-label="Clear" (click)="coupon.name=''">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <div class="file-upload-container">
+      <input formControlName="image" type="file" (change)="handleFileInput($event)">
+      <mat-icon *ngIf="uploadProgress == '100'">check_circle</mat-icon>
+    </div>
+    <mat-progress-bar mode="determinate" value="{{uploadProgress}}" class="spinner"></mat-progress-bar>
+
+    <mat-form-field class="example-form-field">
+        <mat-label>Coupon price</mat-label>
+        <input formControlName="price" matInput type="number" [(ngModel)]="coupon.price" name="couponPrice">
+        <button *ngIf="coupon.price != 0" matSuffix mat-icon-button aria-label="Clear" (click)="coupon.price=0">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Coupon includes</mat-label>
+      <input formControlName="includes" matInput type="text" [(ngModel)]="coupon.includes" name="couponIncludes">
+      <button *ngIf="coupon.includes != ''" matSuffix mat-icon-button aria-label="Clear" (click)="coupon.includes=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Coupon description</mat-label>
+      <input formControlName="description" matInput type="text" [(ngModel)]="coupon.text" name="couponIncludes">
+      <button *ngIf="coupon.text != ''" matSuffix mat-icon-button aria-label="Clear" (click)="coupon.text=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <i><mat-error *ngIf="newCouponForm.invalid">
+      Please fill out all of the inputs
+    </mat-error></i>
+
+    <button mat-raised-button color="accent" [disabled]="!newCouponForm.valid" (click)="addCouponToFirestore()">Add coupon</button>
+</form> 
+
+<img src="../../assets/coupon.png" alt="" class="coupon-img">
+</section>

@@ -1,0 +1,9 @@
+<nav> 
+    <div class="logo">Logo</div>
+    <div class="nav-icons">
+        <div *ngIf="isLoggedIn" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </div>
+    </div>
+</nav>
+

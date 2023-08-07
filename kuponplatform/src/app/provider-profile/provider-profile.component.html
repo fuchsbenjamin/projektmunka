@@ -1,0 +1,92 @@
+
+<button class="add-new-coupon" mat-fab color="primary" (click)="addCouponField = !addCouponField" matTooltip="Add new coupon"><mat-icon>add</mat-icon></button>
+
+
+<app-provider-new-coupon (closeCoupon)="handleCloseCloupon($event)" *ngIf="addCouponField"></app-provider-new-coupon>
+
+
+<main [class.main-blur]="addCouponField">
+<section class="my-coupons custom-scrollbar">
+  <div *ngFor="let coupon of ownedCoupons; index as i" class="my-coupon-card-container">
+  <mat-card class="my-coupon-card" [ngClass]="{ 'blur': sureDelete && selectedCoupon == i }">
+      <img mat-card-image src={{coupon.img}}>
+      <mat-card-title *ngIf="isEditing == false || selectedCoupon !== i">{{coupon.name}}</mat-card-title>
+      <mat-card-title *ngIf="isEditing == true && selectedCoupon == i"><input type="text" value="{{coupon.name}}" [(ngModel)]="couponEditData.name" name="name"></mat-card-title>
+      <mat-card-content>
+        <p class="includes-part" *ngIf="isEditing == false || selectedCoupon !== i"><strong>coupon includes:</strong>{{coupon.includes}}</p>
+        <p class="includes-part" *ngIf="isEditing == true && selectedCoupon == i"><strong>coupon includes:</strong><input type="text" name="includes" value="{{coupon.includes}}" [(ngModel)]="couponEditData.includes"></p>
+        
+        <p *ngIf="isEditing == false || selectedCoupon !== i">{{coupon.text}}</p>
+        <p *ngIf="isEditing == true && selectedCoupon == i"><input type="text" value="{{coupon.text}}" [(ngModel)]="couponEditData.text" name="text"></p>
+        <div class="price-rate-container">
+          <h2 *ngIf="isEditing == false || selectedCoupon !== i">{{coupon.price}} HUF</h2>
+          <h2  *ngIf="isEditing == true && selectedCoupon == i"> <input type="text" value="{{coupon.price}}" [(ngModel)]="couponEditData.price" name="price"> HUF</h2>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div>
+          <button mat-raised-button color="warn" *ngIf="isEditing == false || selectedCoupon !== i" (click)="reallyDelete(i)">Delete</button>
+          <button mat-raised-button color="accent" *ngIf="isEditing == true && selectedCoupon == i" (click)="uptadeCoupon(coupon, i)">Save</button>
+          <button mat-raised-button color="primary" *ngIf="isEditing == false || selectedCoupon !== i" (click)="editable(i)">Edit</button>
+          <button mat-raised-button color="primary" *ngIf="isEditing == true && selectedCoupon == i" (click)="isEditing = false">cancel</button>
+        </div>
+
+        <div class="rate" *ngFor="let avg of averageRates">
+          <div *ngIf="avg.id==coupon.couponId"><mat-icon>star</mat-icon>{{avg.rate}}</div>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="sure-delete" *ngIf="sureDelete && selectedCoupon == i">
+      Delete coupon?
+      <div class="button-container">
+        <button mat-raised-button color="warn" (click)="deleteItem(coupon); sureDelete=false">Delete</button>
+        <button mat-raised-button color="primary" (click)="sureDelete = false">Cancel</button>
+      </div>
+    </mat-card>
+  </div>
+</section>
+<section class="orders custom-scrollbar">
+  <form class="order-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>coupon code</mat-label>
+      <input matInput maxlength="5" placeholder="order code" [(ngModel)]="currentCode" name="currentCode">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="loadOrder()">check</button>
+  </form>
+  <div class="current-coupon" *ngIf="currentCoupon.length > 0">
+  <h2>Aktuális kupon:</h2>
+    <mat-card *ngFor="let cc of currentCoupon">
+        <h2>{{cc.name}}</h2>
+        <h2>{{cc.price}}</h2>
+        <p>{{cc.code}}</p>
+        <p>{{cc.inc}}</p>
+        <button mat-raised-button color="primary" (click)="payedOrders(cc)">Fizetve</button>
+    </mat-card>
+  </div>
+  
+  <div class="in-progress-container" *ngIf="ordersInProgress.length>0">
+    <h2>Készülő rendelések</h2>
+    <div class="in-progress-cards" *ngIf="ordersInProgress.length>0">
+      <mat-card class="single-order-card" *ngFor="let op of ordersInProgress, index as i">
+        <h2>{{op.name}}</h2>
+        <h2>{{op.code}}</h2>
+        <p>{{op.inc}}</p>
+        <button mat-raised-button color="primary" (click)="readyOrder(op, i)">Kész</button>
+      </mat-card>
+    </div>
+  </div>
+  <div class="ready-container" *ngIf="ordersReady.length>0">
+    <h2>Elkészült</h2>
+    <div class="ready-cards" *ngIf="ordersReady.length>0">
+      <mat-card class="single-order-card" *ngFor="let or of ordersReady, index as i">
+        <h2>{{or.name}}</h2>
+        <h2>{{or.code}}</h2>
+        <p>{{or.inc}}</p>
+        <button mat-raised-button color="primary" (click)="delOrder(or, i)">Átvéve</button>
+      </mat-card>
+    </div>
+  </div>
+</section>
+</main>
+
+

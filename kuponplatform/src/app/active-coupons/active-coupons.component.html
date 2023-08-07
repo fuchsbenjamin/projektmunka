@@ -1,0 +1,10 @@
+<h3 *ngIf="activeCoupons.length == 0">Egyelőre nincs aktív kuponod</h3>
+
+<mat-nav-list *ngFor="let ac of activeCoupons, index as i">
+    <div>{{ac.name}}</div>
+    <div>{{ac.code}}</div>
+    <div>{{ac.price}}</div>
+    <button mat-raised-button color="accent" *ngIf="ac.payed == false" (click)="cancelOrder(ac)">törlés</button>
+    <p *ngIf="ac.payed == true && ac.ready == false">Készítjük a rendelésed</p>
+    <p *ngIf="ac.ready == true">Rendelésed elkészült</p>
+</mat-nav-list>

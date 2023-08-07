@@ -1,0 +1,272 @@
+main {height:calc(100vh - 80px)}
+
+new-coupon-container {
+    width: fit-content;
+    height: fit-content;
+    z-index: 10;
+}
+
+.new-coupon-container mat-icon {
+    position: absolute;
+    right: 25%;
+    top: 100px
+}
+
+.add-new-coupon {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+
+    margin: 20px;
+
+    z-index: 10;
+}
+
+.add-new-coupon mat-icon {
+    font-weight: bolder;
+}
+
+app-provider-new-coupon {
+  z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 0px;
+
+    box-shadow: -9px 10px 14px 0px rgba(150,150,150,0.48);
+-webkit-box-shadow: -9px 10px 14px 0px rgba(150,150,150,0.48);
+-moz-box-shadow: -9px 10px 14px 0px rgba(150,150,150,0.48);
+}
+
+/*TAGS SELECTION*/
+
+.tags-selection {
+    border-radius: 10px;
+    position: relative;
+    margin: 20px auto;
+    width: 50vw;
+    height: 80vh;
+
+    padding: 20px;
+
+    box-shadow: -9px 10px 14px 0px rgba(150,150,150,0.48);
+-webkit-box-shadow: -9px 10px 14px 0px rgba(150,150,150,0.48);
+-moz-box-shadow: -9px 10px 14px 0px rgba(150,150,150,0.48);
+}
+
+.tags-selection h1 {
+    text-align: center;
+}
+
+.tags-section {
+
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px auto;
+
+    border: none;
+}
+
+
+.tags-button {
+    margin: 10px;
+}
+
+
+
+.tags-submit {
+
+    position: sticky;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    justify-content: center;
+
+    
+    width: 200px;
+
+    margin: auto;
+
+    
+    
+
+    box-shadow: 0px 0px 15px 3px rgba(233, 30, 98, 0.597);
+}
+
+.selected-tags-card {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.selected-tags-card button {
+  margin: 10px;
+ 
+  min-width: 100px;
+}
+
+.custom-scrollbar {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+  }
+
+
+  main {
+    display: flex;
+  }
+
+  .main-blur {
+    filter: blur(5px) brightness(0.8);
+    transition: all .5s;
+}
+
+
+  /*MY COUPONS*/
+
+  .my-coupons {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 75vw;
+
+    width: 75vw;
+
+    overflow-y: scroll;
+  }
+
+  .my-coupon-card-container {
+    width: fit-content;
+    height: fit-content;
+    position:relative;
+  }
+
+  .my-coupon-card {
+    width: 250px;
+    height: 450px;
+    margin: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .my-coupon-card img {
+    height: 33%;
+  }
+
+  .my-coupon-card mat-card-title {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .mat-card-content {
+    flex-basis: 5;
+  }
+
+  .rate {
+    display: flex;
+    align-items: center;
+  }
+
+  .includes-part{margin: 10px 0;}
+
+  .mat-card-actions{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .blur {
+    filter: blur(1.5px);
+    transition: all .3s;
+  }
+
+
+  .sure-delete{
+    width: 230px;
+    padding: 10px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+  }
+  
+  .button-container button{
+    margin: 10px 5px;
+  }
+  
+
+  .price-rate-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+ 
+  /* MY ORDERS */
+
+  .orders {
+    padding: 20px;
+    overflow-y: scroll;
+    width: 25vw;
+  }
+
+  .current-coupon {
+    min-height: 30vh;
+  }
+
+  .in-progress-ccontainer {
+    overflow-y: scroll;
+  }
+
+  .single-order-card {
+    margin-bottom: 20px;
+  }
+
+  .order-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .order-form button {
+    height: 100%;
+  }
+
+
+  
+
+  @media (max-width: 1200px) {
+    .orders {
+      width: 35vw;
+    }
+
+    .my-coupons {
+      width: 65vw;
+    }
+  }

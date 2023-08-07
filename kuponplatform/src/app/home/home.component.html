@@ -1,0 +1,30 @@
+<main [class.main-blur]="showLogin || showRegistration">
+    <div class="cover-text">
+        <h1 class="cover-title">Kuponok!</h1>
+        <p class="cover-desc">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi debitis esse itaque velit odit iusto totam nesciunt. Saepe, asperiores voluptates. Facere veniam laudantium facilis ab, distinctio cum. Dolores, perspiciatis reprehenderit!
+        </p>
+    </div>
+    <div class="buttons-container">
+        <button (click)="showRegistration = true" mat-raised-button color="accent">Regisztráció</button>
+        <button (click)="showLogin = true" mat-raised-button color="accent">Bejelentkezés</button>
+    </div>
+</main>
+
+<app-registration (provCloseRegistration)="handleProvCloseReg($event)" *ngIf="showRegistration == true" class="fade-in">
+<mat-icon class="close" >close</mat-icon> 
+</app-registration>
+<app-login *ngIf="showLogin == true" (closeLogin)="handleCloseLogin($event)">
+</app-login>
+
+<div class="svg-bottom" [class.main-blur]="showLogin || showRegistration">
+    <img src=".././../assets/bottom_wave.svg" alt="">
+</div>
+
+<div class="order-img" [class.main-blur]="showLogin || showRegistration">
+    <img src="../../assets/order.png" alt="">
+</div>
+
+<div class="svg-lines fade-in"  *ngIf="showLogin || showRegistration">
+    <img src="../../assets/line.svg" alt="">
+</div>

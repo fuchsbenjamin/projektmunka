@@ -1,0 +1,47 @@
+
+<section>
+    <h1>add menu items</h1>
+<form class="add-coupon-form">
+    <mat-form-field class="input-field">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput  placeholder="Cézársaláta" [(ngModel)]="item.name" name="name">
+    </mat-form-field>
+    <mat-form-field class="input-field">
+        <mat-label>Description</mat-label>
+        <input type="text" matInput  placeholder="Csirkehús, saláta, paradicsom, dressing" [(ngModel)]="item.desc" name="desc">
+    </mat-form-field>
+    <mat-form-field class="input-field">
+        <mat-label>price</mat-label>
+        <input type="number" matInput  placeholder="1299" [(ngModel)]="item.price" name="price">
+    </mat-form-field>
+    
+    <button mat-raised-button color="primary" (click)="addMenuItem()">add item</button> 
+</form>
+
+<mat-card class="added-menu-items" *ngFor="let menuItems of menuItemsToAdd; index as i">
+      
+    <mat-card-content>
+        <form>
+            <input class="form-on-focus" type="text"  [(ngModel)]="menuItems.name" [readonly]="!menuItems.editing">
+        </form>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-form-field>
+            <input type="text" matInput [(ngModel)]="menuItems.desc" [readonly]="!menuItems.editing">
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-form-field>
+            <input type="number" matInput [(ngModel)]="menuItems.price" [readonly]="!menuItems.editing">
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-content>
+      <button mat-raised-button color="primary" *ngIf="!menuItems.editing" (click)="editMenuItem(menuItems)">Edit</button>
+      <button mat-raised-button color="warn" (click)="deleteMenuItem(i)">Delete</button>
+      <button mat-raised-button color="primary" *ngIf="menuItems.editing" (click)="saveMenuItem(menuItems)">Save</button>
+    </mat-card-content>
+</mat-card>
+
+<button mat-raised-button color="accent" (click)="uploadMenu()" *ngIf="menuItemsToAdd.length > 0">upload</button>
+
+</section>

@@ -1,0 +1,55 @@
+
+
+  <div class="form-container">
+    <mat-form-field>
+      <input class="search-input" matInput [(ngModel)]="searchValue" placeholder="Search...">
+    </mat-form-field>
+  </div>
+  <section class="coupons">
+    <div *ngFor="let coupon of coupons | search: searchValue; index as i" class="coupon-card-container">
+    <mat-card class="coupon-card" [ngClass]="{ 'blur': showRateWindow && selectedCoupon == i || showShureWindow && selectedCoupon == i  }">
+        <img mat-card-image src={{coupon.img}}>
+        <mat-card-title>{{coupon.name}}</mat-card-title>
+        <mat-card-content>
+          <p class="includes-part"><strong>coupon includes:</strong> {{coupon.includes}}</p>
+          
+          <p>{{coupon.text}}</p>
+          <div class="price-rate-container">
+            
+            <h2>{{coupon.price}} HUF</h2>
+            <div class="rate" *ngFor="let avg of averageRates">
+              <div *ngIf="avg.id==coupon.couponId"><mat-icon>star</mat-icon>{{avg.rate}}</div>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="accent" (click)=" openShureWindow(i)" >Get coupon</button>
+            <button mat-raised-button color="primary" (click)="openRateWindow(i)">Rate coupon</button>
+        </mat-card-actions>
+      </mat-card>
+      <mat-card class="rate-window" *ngIf="showRateWindow && selectedCoupon == i">
+        <p>What's your rate?</p>
+        <p>your rate is: {{rateSliderValue}}</p>
+        <mat-slider [(ngModel)]="rateSliderValue"
+            class="example-margin"
+            [max]="10"
+            [min]="1">
+          <input matSliderThumb>
+        </mat-slider>
+          <div class="button-container">
+            <button mat-raised-button color="primary" (click)="sendNewRate(i)">Rate</button>
+            <button mat-raised-button color="primary" (click)="showRateWindow = false">Cancel</button>
+          </div>
+      </mat-card>
+      <mat-card class="rate-window" *ngIf="showShureWindow && selectedCoupon == i">
+        <p *ngIf="currentCodes.length < 2">Shure?</p>
+          <div class="button-container">
+              <button mat-raised-button color="primary" (click)="activateCoupon(i)">Yes</button>
+              <button mat-raised-button color="warn" (click)="showShureWindow = false">No</button>       
+          </div>
+      </mat-card>
+    </div>
+
+    
+  </section>
+  <button mat-raised-button (click)="openBottomSheet()" class="active-coupons-open" >Aktív kupon</button>

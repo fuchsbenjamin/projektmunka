@@ -1,0 +1,30 @@
+section {
+    width: 60vw;
+    padding: 20px;
+    background-color: white;
+}
+
+h1 {
+    text-align: center;
+}
+
+.error {
+    font-style: italic;
+    color: red;
+}
+
+.buttons {
+    margin-top: 10px;
+}
+
+button {
+    margin-right: 10px;
+}
+
+.close {
+    position: absolute;
+    top:0px;
+    right: 0px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
